@@ -1,12 +1,11 @@
 package com.extracraftx.minecraft.extradoors.block;
 
-import com.extracraftx.minecraft.extradoors.ExtraDoors;
 import com.extracraftx.minecraft.extradoors.CouplingsHelper;
+import com.extracraftx.minecraft.extradoors.ExtraDoors;
 import com.extracraftx.minecraft.extradoors.sound.Sounds;
 
-import io.github.insomniakitten.couplings.Couplings;
-import io.github.insomniakitten.couplings.hook.DoorHooks;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import io.github.chloedawn.couplings.Couplings;
+import io.github.chloedawn.couplings.Doors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoorBlock;
@@ -17,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -26,27 +26,27 @@ import net.minecraft.world.World;
 public class GoldDoorBlock extends DoorBlock {
 
     public GoldDoorBlock() {
-        super(FabricBlockSettings.of(Material.METAL, MaterialColor.GOLD).strength(4, 4).sounds(BlockSoundGroup.METAL)
-                .build());
+        super(Settings.of(Material.METAL, MaterialColor.GOLD).strength(4, 4).sounds(BlockSoundGroup.METAL)
+                .nonOpaque());
     }
 
     @Override
-    public boolean activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
             BlockHitResult hitResult) {
         if (!state.get(POWERED)) {
             state = state.cycle(OPEN);
             world.setBlockState(pos, state, 10);
-            world.playLevelEvent(player, state.get(OPEN) ? 1011 : 1005, pos, 0);
+            world.syncWorldEvent(player, state.get(OPEN) ? 1011 : 1005, pos, 0);
             if(ExtraDoors.COUPLINGS){
-                DoorHooks.usageCallback(state, world, pos, player, hand, hitResult, true);
+                Doors.used(state, world, pos, player, hand, hitResult, ActionResult.SUCCESS);
             }
-            return true;
+            return ActionResult.SUCCESS;
         }
         world.playSound(player, pos, Sounds.LOCKED, SoundCategory.BLOCKS, 1, world.random.nextFloat() * 0.1f + 1.1f);
         if(ExtraDoors.COUPLINGS){
-            DoorHooks.usageCallback(state, world, pos, player, hand, hitResult, true);
+            Doors.used(state, world, pos, player, hand, hitResult, ActionResult.CONSUME);
         }
-        return true;
+        return ActionResult.CONSUME;
     }
 
     @Override

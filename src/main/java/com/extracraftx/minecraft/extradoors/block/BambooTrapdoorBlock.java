@@ -2,8 +2,7 @@ package com.extracraftx.minecraft.extradoors.block;
 
 import com.extracraftx.minecraft.extradoors.ExtraDoors;
 
-import io.github.insomniakitten.couplings.hook.TrapdoorHooks;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import io.github.chloedawn.couplings.Trapdoors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -14,6 +13,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -22,11 +22,11 @@ import net.minecraft.world.World;
 public class BambooTrapdoorBlock extends TrapdoorBlock {
 
     public BambooTrapdoorBlock() {
-        super(FabricBlockSettings.of(Material.BAMBOO).strength(1f, 1f).sounds(BlockSoundGroup.BAMBOO).build());
+        super(Settings.of(Material.BAMBOO).strength(1f, 1f).sounds(BlockSoundGroup.BAMBOO));
     }
 
     @Override
-    public boolean activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
             BlockHitResult hitResult) {
         state = state.cycle(OPEN);
         world.setBlockState(pos, state, 2);
@@ -34,9 +34,9 @@ public class BambooTrapdoorBlock extends TrapdoorBlock {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         playSound(world, player, pos, state);
         if(ExtraDoors.COUPLINGS){
-            TrapdoorHooks.usageCallback(state, world, pos, player, hand, hitResult, true);
+            Trapdoors.used(state, world, pos, player, hand, hitResult, ActionResult.SUCCESS);
         }
-        return true;
+        return ActionResult.SUCCESS;
     }
 
     @Override

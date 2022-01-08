@@ -3,15 +3,19 @@
   "package": "com.extracraftx.minecraft.extradoors.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "InteractableDoorsSensorMixin",
+    "DoorBlockMixin",
     "OpenDoorsTaskMixin",
     "ServerPlayerEntityMixin",
     "LivingEntityMixin",
     "EntityMixin",
-    "LandPathNodeMakerMixin"
+    "EntityAccessor",
+    "LandPathNodeMakerMixin",
+    "LandPathNodeMakerLithiumMixin",
+    "LandPathNodeMakerLithiumCompatMixin"
   ],
   "client": [],
   "server": [],
+  "plugin": "com.extracraftx.minecraft.extradoors.MixinPlugin",
   "injectors": {
     "defaultRequire": 1
   }

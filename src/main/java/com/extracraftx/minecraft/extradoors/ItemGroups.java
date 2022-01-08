@@ -23,6 +23,8 @@ public class ItemGroups {
                 stacks.add(new ItemStack(Items.JUNGLE_TRAPDOOR));
                 stacks.add(new ItemStack(Items.ACACIA_TRAPDOOR));
                 stacks.add(new ItemStack(Items.DARK_OAK_TRAPDOOR));
+                stacks.add(new ItemStack(Items.CRIMSON_TRAPDOOR));
+                stacks.add(new ItemStack(Items.WARPED_TRAPDOOR));
                 stacks.add(new ItemStack(Items.IRON_TRAPDOOR));
 
                 stacks.add(new ItemStack(Blocks.GOLD_TRAPDOOR));
@@ -36,6 +38,8 @@ public class ItemGroups {
                 stacks.add(new ItemStack(Blocks.JUNGLE_GLASS_TRAPDOOR));
                 stacks.add(new ItemStack(Blocks.ACACIA_GLASS_TRAPDOOR));
                 stacks.add(new ItemStack(Blocks.DARK_OAK_GLASS_TRAPDOOR));
+                stacks.add(new ItemStack(Blocks.CRIMSON_GLASS_TRAPDOOR));
+                stacks.add(new ItemStack(Blocks.WARPED_GLASS_TRAPDOOR));
                 stacks.add(new ItemStack(Blocks.IRON_GLASS_TRAPDOOR));
 
                 stacks.add(new ItemStack(Blocks.GOLD_GLASS_TRAPDOOR));
@@ -53,6 +57,8 @@ public class ItemGroups {
                 stacks.add(new ItemStack(Items.JUNGLE_DOOR));
                 stacks.add(new ItemStack(Items.ACACIA_DOOR));
                 stacks.add(new ItemStack(Items.DARK_OAK_DOOR));
+                stacks.add(new ItemStack(Items.CRIMSON_DOOR));
+                stacks.add(new ItemStack(Items.WARPED_DOOR));
 
                 stacks.add(new ItemStack(Blocks.GOLD_DOOR));
                 stacks.add(new ItemStack(Blocks.BAMBOO_DOOR));
@@ -66,6 +72,8 @@ public class ItemGroups {
                 stacks.add(new ItemStack(Blocks.JUNGLE_GLASS_DOOR));
                 stacks.add(new ItemStack(Blocks.ACACIA_GLASS_DOOR));
                 stacks.add(new ItemStack(Blocks.DARK_OAK_GLASS_DOOR));
+                stacks.add(new ItemStack(Blocks.CRIMSON_GLASS_DOOR));
+                stacks.add(new ItemStack(Blocks.WARPED_GLASS_DOOR));
 
                 stacks.add(new ItemStack(Blocks.GOLD_GLASS_DOOR));
                 stacks.add(new ItemStack(Blocks.PURPUR_GLASS_DOOR));

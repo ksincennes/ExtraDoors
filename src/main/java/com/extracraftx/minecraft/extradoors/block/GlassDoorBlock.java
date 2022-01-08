@@ -3,8 +3,7 @@ package com.extracraftx.minecraft.extradoors.block;
 import com.extracraftx.minecraft.extradoors.CouplingsHelper;
 import com.extracraftx.minecraft.extradoors.ExtraDoors;
 
-import io.github.insomniakitten.couplings.Couplings;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import io.github.chloedawn.couplings.Couplings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoorBlock;
@@ -18,7 +17,7 @@ import net.minecraft.world.World;
 public class GlassDoorBlock extends DoorBlock {
 
     public GlassDoorBlock() {
-        super(FabricBlockSettings.of(Material.GLASS).strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).build());
+        super(Settings.of(Material.GLASS).strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque());
     }
 
     @Override
@@ -30,7 +29,7 @@ public class GlassDoorBlock extends DoorBlock {
             if(isPowered){
                 BlockState newState = state.with(POWERED, true).cycle(OPEN);
                 world.setBlockState(pos, newState, 2);
-                world.playLevelEvent(null, state.get(OPEN) ? 1012 : 1006, pos, 0);
+                world.syncWorldEvent(null, state.get(OPEN) ? 1012 : 1006, pos, 0);
                 if(ExtraDoors.COUPLINGS){
                     if (Couplings.areDoorsEnabled()) {
                         final BlockPos offset = CouplingsHelper.getOtherDoor(state, pos);

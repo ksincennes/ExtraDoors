@@ -18,15 +18,15 @@ public abstract class LivingEntityMixin extends Entity implements TeleportableLi
 
     @Override
     public boolean teleport(double x, double y, double z, float yaw, float pitch, boolean particles, int maxDrop) {
-        double oldX = this.x;
-        double oldY = this.y;
-        double oldZ = this.z;
+        double oldX = this.getX();
+        double oldY = this.getY();
+        double oldZ = this.getZ();
         float oldYaw = this.yaw;
         float oldPitch = this.pitch;
 
         boolean successful = false;
         BlockPos currentBlockPos = new BlockPos(x, y, z);
-        if(world.isBlockLoaded(currentBlockPos)){
+        if(world.isChunkLoaded(currentBlockPos)){
             int blocksDown = 0;
             boolean found = false;
             while(!found && blocksDown <= maxDrop && currentBlockPos.getY() > 0){
@@ -40,7 +40,7 @@ public abstract class LivingEntityMixin extends Entity implements TeleportableLi
             }
             if(found){
                 ((TeleportableEntity)this).requestTeleport(x, y, z, yaw, pitch);
-                if(!world.intersectsFluid(this.getBoundingBox())){
+                if(!world.containsFluid(this.getBoundingBox())){
                     successful = true;
                 }
             }

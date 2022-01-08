@@ -3,8 +3,7 @@ package com.extracraftx.minecraft.extradoors.block;
 import com.extracraftx.minecraft.extradoors.ExtraDoors;
 import com.extracraftx.minecraft.extradoors.sound.Sounds;
 
-import io.github.insomniakitten.couplings.hook.TrapdoorHooks;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import io.github.chloedawn.couplings.Trapdoors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -15,6 +14,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -23,12 +23,11 @@ import net.minecraft.world.World;
 public class GoldTrapdoorBlock extends TrapdoorBlock {
 
     public GoldTrapdoorBlock() {
-        super(FabricBlockSettings.of(Material.METAL, MaterialColor.GOLD).strength(4, 4).sounds(BlockSoundGroup.METAL)
-                .build());
+        super(Settings.of(Material.METAL, MaterialColor.GOLD).strength(4, 4).sounds(BlockSoundGroup.METAL).nonOpaque());
     }
 
     @Override
-    public boolean activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
             BlockHitResult hitResult) {
         if (!state.get(POWERED)) {
             state = state.cycle(OPEN);
@@ -37,12 +36,12 @@ public class GoldTrapdoorBlock extends TrapdoorBlock {
                 world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             playToggleSound(player, world, pos, state.get(OPEN));
             if(ExtraDoors.COUPLINGS){
-                TrapdoorHooks.usageCallback(state, world, pos, player, hand, hitResult, true);
+                Trapdoors.used(state, world, pos, player, hand, hitResult, ActionResult.SUCCESS);
             }
-            return true;
+            return ActionResult.SUCCESS;
         }
         world.playSound(player, pos, Sounds.LOCKED, SoundCategory.BLOCKS, 1.1f, world.random.nextFloat() * 0.1f + 1f);
-        return true;
+        return ActionResult.CONSUME;
     }
 
     @Override

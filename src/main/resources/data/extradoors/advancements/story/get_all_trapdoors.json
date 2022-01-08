@@ -89,6 +89,26 @@
                 ]
             }
         },
+        "crimson_trapdoor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:crimson_trapdoor"
+                    }
+                ]
+            }
+        },
+        "warped_trapdoor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:warped_trapdoor"
+                    }
+                ]
+            }
+        },
         "gold_trapdoor": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
@@ -199,6 +219,26 @@
                 ]
             }
         },
+        "crimson_glass_trapdoor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "extradoors:crimson_glass_trapdoor"
+                    }
+                ]
+            }
+        },
+        "warped_glass_trapdoor": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "extradoors:warped_glass_trapdoor"
+                    }
+                ]
+            }
+        },
         "gold_glass_trapdoor": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
@@ -228,6 +268,8 @@
         ["jungle_trapdoor"],
         ["acacia_trapdoor"],
         ["dark_oak_trapdoor"],
+        ["crimson_trapdoor"],
+        ["warped_trapdoor"],
         ["gold_trapdoor"],
         ["bamboo_trapdoor"],
         ["glass_trapdoor"],
@@ -239,6 +281,8 @@
         ["jungle_glass_trapdoor"],
         ["acacia_glass_trapdoor"],
         ["dark_oak_glass_trapdoor"],
+        ["crimson_glass_trapdoor"],
+        ["warped_glass_trapdoor"],
         ["gold_glass_trapdoor"],
         ["purpur_glass_trapdoor"]
     ]
